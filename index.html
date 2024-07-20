@@ -1,10 +1,11 @@
-<!doctype html>
-<html lang="en" class="dark">
+<!DOCTYPE html>
+<html class="dark">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Weather app by Asim</title>
+    <link rel="shortcut icon" href="src/cloudLogo.png" type="image/png">
     <link rel="stylesheet" href="src/style.css">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -86,12 +87,12 @@
     <div
         class="container mx-auto my-5  bg-white dark:bg-gray-900 p-5 rounded-lg flex justify-between items-center flex-wrap">
         <div class=" text-black dark:text-white">
-            <h2 class="text-4xl font-bold mb-5">21°</h2>
-            <p class="text-xl text-gray-400">Mumbai</p>
+            <h2 class="text-4xl font-bold mb-5" id="mainTemp">21°</h2>
+            <p class="text-xl text-gray-400" id="locationName">Mumbai</p>
         </div>
         <div class="text-black dark:text-white text-center">
-            <img src="src/cloudLogo.png" alt="icon">
-            <p class="text-xl text-gray-400">Rainy</p>
+            <img src="src/cloudLogo.png" alt="icon" id="weatherIcon" class="h-20 w-20">
+            <p class="text-xl text-gray-400" id="descMain">Rainy</p>
         </div>
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
@@ -100,7 +101,7 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Cloudy
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4" id="cloud"> 
                             100%
                         </td>
                     </tr>
@@ -108,15 +109,15 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Humidity
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4" id="humidity">
                             84%
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Wind
+                            Wind speeh
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4" id="speed">
                             17 km/h
                         </td>
                     </tr>
@@ -124,7 +125,7 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Visibility
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4" id="visi">
                             10 Meters
                         </td>
                     </tr>
@@ -252,9 +253,9 @@
             <button type="button" class="py-2.5 px-8 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Kolkata</button>
             <button type="button" class="py-2.5 px-8 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Mumbai</button>
         </div>
-
     </div>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="main.js"></script>
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </body>

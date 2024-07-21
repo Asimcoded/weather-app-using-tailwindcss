@@ -13,13 +13,30 @@ const imgURL = "https://openweathermap.org/img/wn/";
 
 async function getWeather(location) {
     const forecastResponse = await fetch(apiURLForecast + location);
-    const forecastData = await forecastResponse.json();
     const response = await fetch(apiURL + location);
-    const data = await response.json();
-    setData(data, forecastData);
+    if(response.status != 200 && forecastResponse.status != 200){
+        for (let index = 0; index < 3; index++) {
+            skeletonElement[index].classList.toggle("hidden")
+            mainElement[index].classList.toggle("hidden")
+        }
+    }
+    if(response.status == 400 && forecastResponse.status == 400){
+        document.querySelector(".alert").classList.remove("hidden")
+    }
+    if (response.status == 200 && forecastResponse.status == 200) {
+        const forecastData = await forecastResponse.json();
+        const data = await response.json();
+        setData(data, forecastData);
+    }
 }
 
 function setData(data, forecastData) {
+    document.querySelector(".alert").classList.add("hidden")
+    for (let index = 0; index < 3; index++) {
+        skeletonElement[index].classList.add("hidden")
+        mainElement[index].classList.remove("hidden")
+    }
+
     document.getElementById('mainTemp').textContent = data.main.temp + " °C";
     document.getElementById("locationName").textContent = data.name;
     document.getElementById("weatherIcon").setAttribute("src", imgURL + data.weather[0].icon + ".png");
@@ -121,9 +138,6 @@ function setData(data, forecastData) {
             },
             axisTicks: {
                 show: false,
-            },
-            title: {
-                text: 'Time'
             }
         },
         yaxis: {
@@ -167,19 +181,21 @@ inputBoxMobile.addEventListener("keypress", (e) => {
         getWeather(inputBoxMobile.value);
     }
 })
-searchBtn.addEventListener("click",()=>{
-    if(inputBox.value != ""){   
+searchBtn.addEventListener("click", () => {
+    if (inputBox.value != "") {
         getWeather(inputBox.value)
     }
 })
-searchBtnMobile.addEventListener("click",()=>{
+searchBtnMobile.addEventListener("click", () => {
 
-    if(inputBoxMobile.value != ""){   
+    if (inputBoxMobile.value != "") {
         getWeather(inputBoxMobile.value)
     }
 })
 const btnBox = document.querySelector(".btn-box");
-btnBox.addEventListener("click",(e)=>{
+btnBox.addEventListener("click", (e) => {
     getWeather(e.target.getAttribute("data-location"))
 })
 getWeather("London")
+const skeletonElement = document.getElementsByClassName("skeleton");
+const mainElement = document.getElementsByClassName("mainContent");

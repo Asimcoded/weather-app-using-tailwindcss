@@ -7,8 +7,9 @@ modeToggleBtn.addEventListener("change", (e) => {
 })
 
 // api key and urls
-const apiURLForecast = "https://api.openweathermap.org/data/2.5/forecast?appid=7e9138465d775a1a266f342713702944&units=metric&q=";
-const apiURL = "https://api.openweathermap.org/data/2.5/weather?&appid=7e9138465d775a1a266f342713702944&units=metric&q="
+const apiKey = '7e9138465d775a1a266f342713702944';
+const apiURLForecast = `https://api.openweathermap.org/data/2.5/forecast?appid=${apiKey}&units=metric&q=`;
+const apiURL = `https://api.openweathermap.org/data/2.5/weather?&appid=${apiKey}&units=metric&q=`
 const imgURL = "https://openweathermap.org/img/wn/";
 
 async function getWeather(location) {
@@ -21,6 +22,9 @@ async function getWeather(location) {
         }
     }
     if(response.status == 400 && forecastResponse.status == 400){
+        document.querySelector(".alert").classList.remove("hidden")
+    }
+    if(response.status == 404 && forecastResponse.status == 404){
         document.querySelector(".alert").classList.remove("hidden")
     }
     if (response.status == 200 && forecastResponse.status == 200) {
